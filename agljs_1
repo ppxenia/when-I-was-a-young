@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>anglarJS-06</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+<link href="" rel="stylesheet">
+</head>
+<body ng-app="app">
+<div ng-controller="show">
+	<p>protocol:{{protocol}}</p>
+	<p>absUrl:{{absUrl}}</p>
+	<p>path:{{path}}</p>
+    <p>port:{{port}}</p>
+    <p>search:{{search}}</p>
+    <p>hash:{{hash}}</p>
+	<p>{{person}}</p>
+	<p>{{xenia}}</p>
+	
+
+</div>
+    
+</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular.min.js"></script>
+<script >
+	angular.module('app',[])
+	   .controller('show',function($scope,$location,$interval,$timeout){
+             	$scope.protocol=$location.protocol();
+             	$scope.absUrl=$location.absUrl();
+                $scope.path=$location.path();
+                $scope.port=$location.port();
+                $scope.search=$location.search();
+                $scope.hash=$location.hash();
+                $scope.person=1;
+                $scope.xenia='xpp';
+                $interval(function(){
+                  $scope.person ++;
+               
+                },1000);
+                $timeout(function() {
+                 $scope.xenia=$scope.xenia+',hello';
+                }, 2000);
+                
+                
+                
+
+
+
+	   })
+
+
+</script>
+</html>
