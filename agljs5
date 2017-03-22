@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>angularJS-05</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+</head>
+<body ng-app="app">
+    <div ng-controller="test">
+    	<p>value:{{valueName}}</p>
+    	<p>{{constantName}}</p>
+    	<p>{{boy.name}}</p>
+    	<p>{{friend.ename()}}</p>   <!-- 可试试friend.name，注意ename()-->
+    	
+    </div>
+    <div ng-controller="qianxi">
+    <p>{{lovelyTeammate.name}}</p></div>
+</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular.min.js"></script>
+<script>
+	angular.module('app',[])
+	.value('valueName','this is a value')   //可更改，会被污染
+	.constant('constantName','this is a constant')   //一旦定义，值不会变
+	 .factory('boy',function(){
+	 	return{
+	 	name:'001',
+	 	ename:function(){
+	 		this.name='b'
+	 	}}
+	 })
+	 .service("friend",function(){
+	 	this.name='002';
+	 	this.ename=function(){
+	 		return 'g';
+	 	}
+	 })
+	 
+	.controller('test',function($scope,valueName,constantName,boy,friend){
+       $scope.valueName=valueName;
+         $scope.constantName=constantName;
+         $scope.boy=boy;
+         //boy.ename();
+         $scope.friend=friend;
+        
+	})
+	
+</script>
+</html>
+<!--
+function teammate(){
+	 	this.name="003";
+	 	this.ename=function(){
+	 		return 'r';
+	 	}
+	 }
+	 .factory('lovelyTeammate',function(){
+	 	return new teammate();
+	 })
+
+	 .controller('qianxi',function(){
+		 $scope.lovelyTeammate=lovelyTeammate;
+	})
