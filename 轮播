@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+<style>
+*{ margin:0; padding:0; text-decoration:none;}
+body{ padding:20px;}
+#kuang{ width:400px; height:200px; background-color:#333;
+	}
+#container{left:50px; width:300px; height:200px; overflow:hidden; position:relative;}
+#list{ width:1600px; height:200px; position:absolute; z-index:1;}
+#list img{ float:left;width:300px; height:200px;}
+#buttons{ position:absolute; height:10px; width:88px; z-index:2; bottom:20px; left:150px;}
+#buttons span{ cursor:pointer; float:left; border:1px solid #C96; width:10px; height:10px; border-radius:50%; background:#333; margin-right:10px;}
+#buttons .on{background: orangered}
+.arrow{cursor:pointer;display:none;line-height:39px;  text-align:center; font-size:36px; font-weight:bold; width:40px; height:40px; position:absolute; z-index:2; top:80px; background:#0F6;
+}
+.arrow:hover{background-color:RGBA(0,0,0,.7);}
+#container:hover .arrow{display:block;}
+#prev{left:20px;}
+#next{ right:20px;}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var container=document.getElementById('container');
+	var list=document.getElementById('list');
+	var buttons=document.getElementById('buttons').getElementsByTagName('span');  //attention
+	var prev=document.getElementById('prev');
+	var next=document.getElementById('next');
+	var index=1;
+	var animated=false;
+    var timer;
+	function showButton() {
+		for(var i=0;i<buttons.length;i++){
+			if(buttons[i].className=='on'){ 
+				buttons[i].className='';
+				break;
+			}
+				}
+		buttons[ index-1].className='on';
+		}
+	   function animate(offset){
+		   animated=true;
+		   var  newLeft=parseInt(list.style.left) + offset;
+		   var time=300;
+		   var interval=100;
+		   var speed=offset/(time/interval);
+		   
+		   function go(){
+			   if((speed<0 && parseInt(list.style.left)>newLeft)||(speed>0 && parseInt(list.style.left)<newLeft)){
+				  list.style.left=parseInt(list.style.left)+speed +'px';
+				  setTimeout(go,interval);
+				  
+				   }
+			   else{ 
+			   animated=false;
+			   list.style.left=newLeft+'px';
+					if(newLeft > -300){
+						list.style.left=-1200+'px';
+						}
+					if(newLeft < -1200){
+						list.style.left=-300+'px';
+						}
+			   }
+			   }
+		   
+			   go();
+	   
+		  
+}
+		 
+	   function play(){
+		   timer=setInterval(function(){
+			   next.onclick();
+			   },2000);
+			   }
+		function stop(){
+			clearInterval(timer);
+			}   //play &stop;
+	   next.onclick=function(){
+		   if(index==4){
+			   index=1
+			   }
+			   else{
+				index += 1;  
+				 }
+		  
+		  showButton();
+		  if(!animated){
+			  
+		  animate(-300);
+		   }
+		   }
+	prev.onclick=function(){
+			if(index==1){
+			   index=4
+			   }
+			   else{
+				index -= 1; 
+				  }
+
+		  showButton();
+		  if(!animated){
+		  animate(300);
+		   }
+		   }
+		for(var i=0;i<buttons.length;i++){
+		  buttons[i].onclick=function(){
+			if(this.calssName =='on'){
+				return;
+				}
+			var myIndex=parseInt(this.getAttribute('index'));
+			var offset = -300*(myIndex-index);
+			
+			
+			index=myIndex;
+			showButton();
+			if(!animated){
+				animate(offset);
+						}
+		  }
+		  }
+		  container.onmouseover=stop;
+		  container.onmouseout=play;
+		  play();
+	}
+
+	   
+</script>
+</head>
+
+<body>
+<div id="kuang">
+<div id="container">
+<div id="list" style="left:-300px;">
+
+<img src="../css/fat-dog.png" alt="">
+<img src="../css/bamboo.png" alt="">
+<img src="../css/snail.png" alt="">
+<img src="../css/logo.png" alt="">
+<img src="../css/fat-dog.png" alt="">
+<img src="../css/bamboo.png" alt="">
+</div>
+<div id="buttons">
+<span index="1" class="on"></span>
+<span index="2"></span>
+<span index="3"></span>
+<span index="4"></span>
+</div>
+<a href="javascript:;" class="arrow" id="prev">&lt;</a>
+<a href="javascript:;" class="arrow" id="next">&gt;</a>
+</div>
+</div>
+</body>
+
+
+</html>
