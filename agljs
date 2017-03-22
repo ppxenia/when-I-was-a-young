@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>angularJS</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+<meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  
+</head>
+<body style="padding:50px;">
+<div style="width:300px;margin:0 auto" ng-app="">
+	<div class="am-input-group">
+  <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+  <input type="text" class="am-form-field" placeholder="Username"ng-model="userId">
+</div>
+
+<div class="am-input-group">
+  <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+  <input type="text" class="am-form-field" placeholder="Password">
+</div>
+<p>{{userId}}</p>
+</div>
+<article class="am-comment">
+  <a href="#link-to-user-home">
+    <img src="" alt="" class="am-comment-avatar" width="48" height="48"/>
+  </a>
+
+  <div class="am-comment-main">
+    <header class="am-comment-hd">
+      <!--<h3 class="am-comment-title">评论标题</h3>-->
+      <div class="am-comment-meta">
+        <a href="#link-to-user" class="am-comment-author">某人</a>
+        评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+      </div>
+    </header>
+
+    <div class="am-comment-bd">
+      ...
+      
+    </div>
+  </div>
+</article>
+<div clground-color:yellow">8</div>ass="am-g">
+  <div class="am-u-sm-4" style="background-color:red">4</div>
+  <div class="am-u-sm-2"  style="back
+   <div class="am-u-sm-6"  style="background-color:blue">4</div>
+
+</div>
+<div class="am-g doc-am-g">
+  <div class="am-u-sm-6 am-u-md-4 am-u-lg-3" style="background-color:red">sm-6 md-4 lg-3</div>
+  <div class="am-u-sm-6 am-u-md-8 am-u-lg-9" style="background-color:pink">sm-6 md-8 lg-9</div>
+</div>
+   <!--sm:0-640px;md:640px-1024px;lg:1024px;  可自动实现响应式布局-->
+    
+</body>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular.min.js"></script>
+</html>
