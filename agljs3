@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>angularJS-03</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+<meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+</head>
+<body ng-app="app">
+<script type="text/ng-template" id="newsList">
+	<li><a href="{{url}}">{{msg}}</a></li>
+</script>
+    <ul class="am-list" ng-include src="'newsList'" ng-controller='news'> </ul>
+</body>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular.min.js"></script>
+<script >
+	angular.module('app',[])
+	.controller('news',function($scope){
+		$scope.msg="This the first news";
+		$scope.url='http://www.baidu.com';
+	})
+</script>
+</html>
