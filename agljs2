@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>angularJS02</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+<link href="" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+body{padding: 50px;}
+#container{width: 300px;margin:0 auto;}
+#btns{margin-top: 15px;}
+</style>
+</head>
+<body ng-app="app">
+<div id="container" ng-controller="formLogin" >
+<form  ng-submit='submitForm(myForm.$valid)'  name='myForm'>
+<div class="am-alert {{color}}" data-am-alert ng-show="errorMesg.length>0">
+  <button type="button" class="am-close">&times;</button>
+  <p>{{errorMesg}}</p></div>
+<h2>登录表单</h2>
+    <div class="am-input-group">
+  <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+  <input type="text" class="am-form-field" placeholder="Username"ng-model="user.uId" required ng-minlength="5" name="UID">
+</div>
+<p>
+	没修改；{{myForm.UID.$pristine}}<br>
+	修改过：{{myForm.UID.$dirty}}<br>
+	验证成功:{{myForm.UID.$valid}}<br>
+	验证失败：{{myForm.UID.$invalid}}<br>
+	错误详情：{{myForm.UID.$error}}<br>
+</p>
+<div class="am-input-group">
+  <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+  <input type="text" class="am-form-field" placeholder="Password"ng-model="user.pwd">
+</div>
+<div class="am-g" id="btns">
+  <div class="am-u-sm-6 am-text-center"><button type="submit" class="am-btn am-btn-success"  >登陆</button></div>
+  <div class="am-u-sm-6"><button type="button" class="am-btn am-btn-default">取消</button>
+</div>
+</div>
+</form>
+</div>
+<div class="am-form-group">
+	<label for="doc-select-1">下拉</label>
+	<select id="doc-select-1" ng-model="pic">
+		<option value="1">one</option>
+		<option value="2">two</option>
+		<option value="3">three</option>
+	</select>
+	<span class="am-form-caret"></span>
+</div>
+<ul class="am-avg-sm-4-thumbnails" ng-switch='pic'>
+	<li ng-switch-when='1'><img class='am-thumbnail' width="200px" src="http://s.amazeui.org/media/i/demos/bing-1.jpg"/></li>
+	<li ng-switch-when='2'><img width="200px" class='am-thumbnail' src="http://s.amazeui.org/media/i/demos/bing-2.jpg"/></li>
+	<li ng-switch-when='3'><img width="200px"class='am-thumbnail' src="http://s.amazeui.org/media/i/demos/bing-3.jpg"/></li>
+	<li ng-switch-default><img width="200px"class='am-thumbnail' src="http://s.amazeui.org/media/i/demos/bing-4.jpg"/></li>
+</ul>
+</div>
+</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular.min.js"></script>
+<script >
+	angular.module('app',[])
+	       .controller('formLogin',function($scope){
+	       	$scope.user={url:'',pwd:''};
+	       	$scope.errorMesg='';
+	       	$scope.login=function(){
+	       		console.log($scope.user.uId);
+	       		console.log($scope.user.pwd);
+	       		if($scope.user.uId=="admin"&&$scope.user.pwd=='admin'){
+	       			$scope.errorMesg='登录成功';
+	       			$scope.color='am-alert-success'
+	       		}
+	       		else{
+	       			$scope.errorMesg='错了';
+	       			$scope.color='am-alert-danger';
+	       		}
+       	}
+	       	$scope.submitForm=function(isValid){
+	       		console.log(isValid);
+	       		if(!isValid){
+	       			$scope.errorMesg='hai,wrong writting';
+	       			$scope.color="am-alert-danger";
+	       		}
+	       		else{
+	       			$scope.errorMesg='hai,right writting';
+	       			$scope.color="am-alert-success";	
+	       		}
+	       	}
+	       })
+</script>
+</html>
