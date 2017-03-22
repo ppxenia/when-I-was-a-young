@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>angularJS-cacheFactory</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+<style type="text/css">
+	body{width: 250px;}
+	div{margin-top:20px;margin-left: 5px;}
+	button{margin-top:20px;margin-left: 80px;}
+</style>
+</head>
+<body  ng-app="app">
+<div ng-controller="show">
+    <div class="am-input-group">
+  <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+  <input type="text" class="am-form-field" placeholder="输入要缓存的内容" ng-model='cName'>
+</div>
+<button type="button" class="am-btn am-btn-primary" ng-click='cSet()'>设置缓存</button><br>
+<button type="button" class="am-btn am-btn-secondary" ng-click='cShow()'>查看缓存</button><br>
+<button type="button" class="am-btn am-btn-success" ng-click='cDel()'>删除缓存</button>
+<p>{{showC}}</p>
+</div>
+</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('app',[])
+	.service('cache',function($cacheFactory){
+		return $cacheFactory('test');
+	})
+	
+	.controller('show',function($scope,cache){
+		
+		$scope.cSet=function(){
+			cache.put('mytext',$scope.cName);
+		};
+		$scope.cShow=function(){
+			$scope.showC=cache.get('mytext');
+	};
+	      $scope.cDel=function(){
+	      	cache.remove('mytext');
+	      	$scope.showC=cache.get('mytext');
+	        cache.removeAll();
+	        cache.destory();
+	      }
+	})
+</script>
+</html>
