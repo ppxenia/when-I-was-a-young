@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,div,span{
+margin:0;
+padding:0;}
+#div1{
+	width:200px;
+	height:200px;
+	background:red;
+	position:relative;
+	left:-200px;
+	top:0;
+	}
+#div1 span{
+		width:20px;
+		height:50px;
+		background:blue;
+		position:absolute;
+		left:200px;
+		top:75px;}
+</style>
+			
+<script type="text/javascript">
+window.onload=function(){
+  var oDiv=document.getElementById('div1');
+  oDiv.onmouseover=function(){     //进入时左移，左：speed=1
+	  startMove(0);
+	  }
+	   oDiv.onmouseout=function(){      //出时右移，右：speed=-1
+	  startMove(-200);
+	  }
+	}
+	var timer=null;
+function startMove(iTarget){             //一个参数
+	clearInterval(timer);   //保证只有一个定时器
+  var oDiv=document.getElementById('div1');
+     timer=setInterval(function(){
+		 var speed=0;
+		 if(oDiv.offsetLeft>iTarget){
+			 speed=-10;
+			 }
+			 else{
+				 speed=10;}
+	  if(oDiv.offsetLeft==iTarget){
+		  clearInterval(timer);   //如果已经到目标地址，则定时器停止启动，使他不再移动。
+		  }
+		  else{
+			  oDiv.style.left=oDiv.offsetLeft+speed+'px';}
+
+			  },30)
+			  }
+
+ </script>
+    </head>
+<body>
+<div id="div1"><span id="share">分享</span></div>
+</body>
+</html>
+
